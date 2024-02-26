@@ -12,6 +12,7 @@
 import os, json
 import numpy as np
 from gnuradio import gr
+import torchsig
 
 class signal_generator(gr.sync_block):
     """
