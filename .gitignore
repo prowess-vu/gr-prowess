@@ -4,6 +4,8 @@ __pycache__/
 *$py.class
 .DS_Store
 examples/*.py
+examples/grc/*.py
+utils/perf-data*
 
 # C extensions and object files
 *.so
@@ -11,7 +13,7 @@ examples/*.py
 
 # Distribution / packaging
 .Python
-build/
+build*/
 develop-eggs/
 dist/
 downloads/

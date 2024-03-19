@@ -1,0 +1,45 @@
+{
+  "randomizerSeed": null,
+  "emitters": [
+    {
+      "name": "Emitter 1",
+      "modulationScheme": "64pam",
+      "centerFrequencyMHz": 1.0,
+      "bandwidthkHz": 1.0,
+      "events": [
+        {
+          "onSec": 1.0,
+          "offSec": 2.0,
+          "gaindB": 1.0,
+          "impairments": []
+        },
+        {
+          "onSec": 10.0,
+          "offSec": 12.0,
+          "gaindB": 2.0,
+          "impairments": ["RandomConvolve", "TimeVaryingNoise"]
+        }
+      ]
+    },
+    {
+      "name": "Emitter 2",
+      "modulationScheme": "ofdm-180",
+      "centerFrequencyMHz": 1.0,
+      "bandwidthkHz": 1.0,
+      "events": [
+        {
+          "onSec": 1.0,
+          "offSec": 2.0,
+          "gaindB": 1.0,
+          "impairments": []
+        },
+        {
+          "onSec": 10.0,
+          "offSec": 12.0,
+          "gaindB": 2.0,
+          "impairments": ["IQImbalance"]
+        }
+      ]
+    }
+  ]
+}

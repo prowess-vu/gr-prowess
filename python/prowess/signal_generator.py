@@ -9,29 +9,28 @@
 # SPDX-License-Identifier: MIT
 #
 
-import os, json
-import numpy as np
 from gnuradio import gr
+import random, numpy as np
+from .config_file_parser import parse_config
 import torchsig
 
 class signal_generator(gr.sync_block):
     """
-    docstring for block signal_generator
+    Generate a wideband RF signal using details from a specified JSON
+    configuration file
     """
+
     def __init__(self, configuration):
-        if not configuration:
-            raise RuntimeError('Parameter "configuration" must be specified')
-        elif not os.path.isfile(configuration):
-            raise RuntimeError(f'Configuration file {configuration} does not exist')
+        """
+        Parse a time-based configuration object and seed a random number generator
+        to allow for reproducibility between runs
+        """
         gr.sync_block.__init__(self,
             name="Signal Generator",
             in_sig=None,
             out_sig=[np.float32])
-
-        # TODO: Parse the configuration JSON file
-        self.config = []
-        with open(configuration) as configFile:
-            configData = json.load(configFile)
+        seed, self.config = parse_config(configuration)
+        random.seed(seed)
 
 
     def work(self, input_items, output_items):
