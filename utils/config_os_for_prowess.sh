@@ -40,8 +40,10 @@ for group in $(cset -m set | grep ";" | grep -v root | egrep -o "^[^;]*?"); do
    sudo cset set --cpu=$system_cores $group
 done
 cset shield --sysset=system --userset=gr-prowess --cpu="$user_cores" --kthread=on
-chown -R root:$SUDO_USER /sys/fs/cgroup/cpuset
-chmod -R g+rwx /sys/fs/cgroup/cpuset
+if [ -e /sys/fs/cgroup/cpuset ]; then
+   chown -R root:$SUDO_USER /sys/fs/cgroup/cpuset
+   chmod -R g+rwx /sys/fs/cgroup/cpuset
+fi
 
 # Determine the appropriate CPU mask for setting IRQ affinities
 irq_mask=0
@@ -55,7 +57,7 @@ if systemctl list-units --full --all | grep -Fq "irqbalance.service"; then
    systemctl stop irqbalance.service
 fi
 for irq in $(ls /proc/irq/*/smp_affinity); do
-   echo $irq_mask | tee $irq >/dev/null
+   echo $irq_mask | tee $irq 2>&1 >/dev/null
 done
 
 # Set the CPU governer to performance mode to disable CPU frequency scaling

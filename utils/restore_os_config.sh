@@ -21,8 +21,10 @@ echo 950000 > /proc/sys/kernel/sched_rt_runtime_us
 cset shield --reset
 cset set -s gr-prowess --destroy
 cset set -s system --destroy
-chown -R root:root /sys/fs/cgroup/cpuset
-chmod -R g-wx+r /sys/fs/cgroup/cpuset
+if [ -e /sys/fs/cgroup/cpuset ]; then
+   chown -R root:root /sys/fs/cgroup/cpuset
+   chmod -R g-wx+r /sys/fs/cgroup/cpuset
+fi
 
 # Restore the default IRQ affinities
 if systemctl list-units --full --all | grep -Fq "irqbalance.service"; then
@@ -30,7 +32,7 @@ if systemctl list-units --full --all | grep -Fq "irqbalance.service"; then
 fi
 default_bitmask=$(cat /proc/irq/default_smp_affinity)
 for irq in $(ls /proc/irq/*/smp_affinity); do
-   echo $default_bitmask | tee $irq >/dev/null
+   echo $default_bitmask | tee $irq 2>&1 >/dev/null
 done
 if systemctl list-units --full --all | grep -Fq "irqbalance.service"; then
    systemctl start irqbalance.service
