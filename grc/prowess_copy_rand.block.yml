@@ -1,0 +1,29 @@
+id: prowess_copy_rand
+label: Random Copier
+category: '[PROWESS]'
+
+templates:
+  imports: from gnuradio import prowess
+  make: prowess.copy_rand(${item_size}, ${max_copy})
+
+parameters:
+- id: item_size
+  label: Item Size
+  dtype: int
+  default: 4
+- id: max_copy
+  label: Max Copies
+  dtype: int
+  default: 0xffffffff
+
+inputs:
+- label: in
+  domain: stream
+  dtype: byte
+
+outputs:
+- label: out
+  domain: stream
+  dtype: byte
+
+file_format: 1

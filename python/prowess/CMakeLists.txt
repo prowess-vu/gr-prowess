@@ -39,3 +39,8 @@ add_custom_target(
     COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}
             ${PROJECT_BINARY_DIR}/test_modules/gnuradio/prowess/)
 GR_ADD_TEST(qa_signal_generator ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_signal_generator.py)
+GR_ADD_TEST(qa_message_forward ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_message_forward.py)
+GR_ADD_TEST(qa_ncopy ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_ncopy.py)
+GR_ADD_TEST(qa_copy_rand ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_copy_rand.py)
+GR_ADD_TEST(qa_null_sink_latency ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_null_sink_latency.py)
+GR_ADD_TEST(qa_null_source_latency ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/qa_null_source_latency.py)

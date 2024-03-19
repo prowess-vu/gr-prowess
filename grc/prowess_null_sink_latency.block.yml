@@ -1,0 +1,26 @@
+id: prowess_null_sink_latency
+label: Null Sink Latency
+category: '[PROWESS]'
+
+templates:
+  imports: from gnuradio import prowess
+  make: prowess.null_sink_latency(${type.size}, ${granularity})
+
+parameters:
+- id: type
+  label: Input Type
+  dtype: enum
+  options: [complex, float, int, short, byte]
+  option_attributes:
+    size: [gr.sizeof_gr_complex, gr.sizeof_float, gr.sizeof_int, gr.sizeof_short, gr.sizeof_char]
+  hide: part
+- id: granularity
+  label: Granularity
+  dtype: int
+  default: 32768
+
+inputs:
+  domain: stream
+  dtype: ${type}
+
+file_format: 1

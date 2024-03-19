@@ -1,0 +1,25 @@
+id: prowess_ncopy
+label: Internal Copier
+category: '[PROWESS]'
+
+templates:
+  imports: from gnuradio import prowess
+  make: prowess.ncopy(${ntimes})
+
+parameters:
+- id: ntimes
+  label: Num Copies
+  dtype: float
+  default: 2
+
+inputs:
+- label: in
+  domain: stream
+  dtype: float
+
+outputs:
+- label: out
+  domain: stream
+  dtype: float
+
+file_format: 1

@@ -1,0 +1,17 @@
+id: prowess_message_forward
+label: Message Forwarder
+category: '[PROWESS]'
+
+templates:
+  imports: from gnuradio import prowess
+  make: prowess.message_forward()
+
+inputs:
+- label: in
+  domain: message
+
+outputs:
+- label: out
+  domain: message
+
+file_format: 1

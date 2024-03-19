@@ -24,7 +24,12 @@ include(GrPybind)
 # Python Bindings
 ########################################################################
 
-list(APPEND prowess_python_files python_bindings.cc)
+list(APPEND prowess_python_files
+    message_forward_python.cc
+    ncopy_python.cc
+    copy_rand_python.cc
+    null_sink_latency_python.cc
+    null_source_latency_python.cc python_bindings.cc)
 
 gr_pybind_make_oot(prowess ../../.. gr::prowess "${prowess_python_files}")
 

@@ -50,13 +50,13 @@ def parse_config(config_file_path):
     if required_emitter_keys.difference(emitter.keys()):
       raise RuntimeError(f'Emitter missing required parameter(s): {required_emitter_keys.difference(emitter.keys())}')
     elif emitter['modulationScheme'].lower() not in valid_modulation_schemes:
-      raise RuntimeError(f'Modulation scheme "{emitter['modulationScheme']}" for emitter "{emitter['name']}" is invalid. Must be one of: {valid_modulation_schemes}')
+      raise RuntimeError(f'Modulation scheme "{emitter["modulationScheme"]}" for emitter "{emitter["name"]}" is invalid. Must be one of: {valid_modulation_schemes}')
     for event in emitter['events']:
       if required_event_keys.difference(event.keys()):
-        raise RuntimeError(f'Event for emitter "{emitter['name']}" missing required parameter(s): {required_event_keys.difference(event.keys())}')
+        raise RuntimeError(f'Event for emitter "{emitter["name"]}" missing required parameter(s): {required_event_keys.difference(event.keys())}')
       invalid_impairments = [impairment for impairment in event['impairments'] if impairment not in valid_impairments]
       if invalid_impairments:
-        raise RuntimeError(f'Impairment(s) for event in emitter "{emitter['name']}" are invalid: {invalid_impairments}')
+        raise RuntimeError(f'Impairment(s) for event in emitter "{emitter["name"]}" are invalid: {invalid_impairments}')
 
   # Return a time-based configuration data structure
   config = defaultdict(list)

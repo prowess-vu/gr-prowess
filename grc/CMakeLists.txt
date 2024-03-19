@@ -6,4 +6,9 @@
 # SPDX-License-Identifier: MIT
 #
 install(FILES
-    prowess_signal_generator.block.yml DESTINATION share/gnuradio/grc/blocks)
+    prowess_signal_generator.block.yml
+    prowess_message_forward.block.yml
+    prowess_ncopy.block.yml
+    prowess_copy_rand.block.yml
+    prowess_null_sink_latency.block.yml
+    prowess_null_source_latency.block.yml DESTINATION share/gnuradio/grc/blocks)

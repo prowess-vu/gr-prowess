@@ -10,8 +10,15 @@
 # Setup library
 ########################################################################
 include(GrPlatform) #define LIB_SUFFIX
+include (FindLTTngUST REQUIRED)
 
-list(APPEND prowess_sources)
+list(APPEND prowess_sources
+    message_forward_impl.cc
+    ncopy_impl.cc
+    copy_rand_impl.cc
+    null_sink_latency_impl.cc
+    null_source_latency_impl.cc
+    tracepoint.cpp)
 
 set(prowess_sources
     "${prowess_sources}"
@@ -22,7 +29,7 @@ if(NOT prowess_sources)
 endif(NOT prowess_sources)
 
 add_library(gnuradio-prowess SHARED ${prowess_sources})
-target_link_libraries(gnuradio-prowess gnuradio::gnuradio-runtime)
+target_link_libraries(gnuradio-prowess gnuradio::gnuradio-runtime LTTng::UST)
 target_include_directories(
     gnuradio-prowess
     PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../include>

@@ -9,4 +9,9 @@
 ########################################################################
 # Install public header files
 ########################################################################
-install(FILES api.h DESTINATION include/gnuradio/prowess)
+install(FILES api.h
+    message_forward.h
+    ncopy.h
+    copy_rand.h
+    null_sink_latency.h
+    null_source_latency.h DESTINATION include/gnuradio/prowess)
