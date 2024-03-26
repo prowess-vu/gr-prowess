@@ -29,29 +29,30 @@
 #include <gnuradio/sync_block.h>
 
 namespace gr {
-namespace prowess {
+  namespace prowess {
 
-/*!
- * \brief <+description of block+>
- * \ingroup prowess
- *
- */
-class PROWESS_API ncopy : virtual public gr::sync_block {
-public:
-  typedef std::shared_ptr<ncopy> sptr;
+    /*!
+     * \brief <+description of block+>
+     * \ingroup prowess
+     *
+     */
+    class PROWESS_API ncopy : virtual public gr::sync_block
+    {
+     public:
+      typedef std::shared_ptr<ncopy> sptr;
 
-  /*!
-   * \brief Return a shared_ptr to a new instance of prowess::ncopy.
-   *
-   * To avoid accidental use of raw pointers, prowess::ncopy's
-   * constructor is in a private implementation
-   * class. prowess::ncopy::make is the public interface for
-   * creating new instances.
-   */
-  static sptr make(int ntimes);
-};
+      /*!
+       * \brief Return a shared_ptr to a new instance of prowess::ncopy.
+       *
+       * To avoid accidental use of raw pointers, prowess::ncopy's
+       * constructor is in a private implementation
+       * class. prowess::ncopy::make is the public interface for
+       * creating new instances.
+       */
+      static sptr make(int ntimes);
+    };
 
-} // namespace prowess
+  } // namespace prowess
 } // namespace gr
 
 #endif /* INCLUDED_PROWESS_NCOPY_H */

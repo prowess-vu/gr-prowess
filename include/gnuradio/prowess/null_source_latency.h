@@ -29,30 +29,31 @@
 #include <gnuradio/sync_block.h>
 
 namespace gr {
-namespace prowess {
+  namespace prowess {
 
-/*!
- * \brief <+description of block+>
- * \ingroup prowess
- *
- */
-class PROWESS_API null_source_latency : virtual public gr::sync_block {
-public:
-  typedef std::shared_ptr<null_source_latency> sptr;
+    /*!
+     * \brief <+description of block+>
+     * \ingroup prowess
+     *
+     */
+    class PROWESS_API null_source_latency : virtual public gr::sync_block
+    {
+     public:
+      typedef std::shared_ptr<null_source_latency> sptr;
 
-  /*!
-   * \brief Return a shared_ptr to a new instance of
-   * prowess::null_source_latency.
-   *
-   * To avoid accidental use of raw pointers, prowess::null_source_latency's
-   * constructor is in a private implementation
-   * class. prowess::null_source_latency::make is the public interface for
-   * creating new instances.
-   */
-  static sptr make(size_t item_size, uint64_t granularity);
-};
+      /*!
+       * \brief Return a shared_ptr to a new instance of
+       * prowess::null_source_latency.
+       *
+       * To avoid accidental use of raw pointers, prowess::null_source_latency's
+       * constructor is in a private implementation
+       * class. prowess::null_source_latency::make is the public interface for
+       * creating new instances.
+       */
+      static sptr make(size_t item_size, uint64_t granularity);
+    };
 
-} // namespace prowess
+  } // namespace prowess
 } // namespace gr
 
 #endif /* INCLUDED_PROWESS_NULL_SOURCE_LATENCY_H */

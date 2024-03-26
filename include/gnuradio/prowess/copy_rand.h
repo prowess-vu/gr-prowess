@@ -29,29 +29,30 @@
 #include <gnuradio/prowess/api.h>
 
 namespace gr {
-namespace prowess {
+  namespace prowess {
 
-/*!
- * \brief <+description of block+>
- * \ingroup prowess
- *
- */
-class PROWESS_API copy_rand : virtual public gr::block {
-public:
-  typedef std::shared_ptr<copy_rand> sptr;
+    /*!
+     * \brief <+description of block+>
+     * \ingroup prowess
+     *
+     */
+    class PROWESS_API copy_rand : virtual public gr::block
+    {
+     public:
+      typedef std::shared_ptr<copy_rand> sptr;
 
-  /*!
-   * \brief Return a shared_ptr to a new instance of prowess::copy_rand.
-   *
-   * To avoid accidental use of raw pointers, prowess::copy_rand's
-   * constructor is in a private implementation
-   * class. prowess::copy_rand::make is the public interface for
-   * creating new instances.
-   */
-  static sptr make(size_t item_size, size_t max_copy = 0xffffffff);
-};
+      /*!
+       * \brief Return a shared_ptr to a new instance of prowess::copy_rand.
+       *
+       * To avoid accidental use of raw pointers, prowess::copy_rand's
+       * constructor is in a private implementation
+       * class. prowess::copy_rand::make is the public interface for
+       * creating new instances.
+       */
+      static sptr make(size_t item_size, size_t max_copy = 0xffffffff);
+    };
 
-} // namespace prowess
+  } // namespace prowess
 } // namespace gr
 
 #endif /* INCLUDED_PROWESS_COPY_RAND_H */
