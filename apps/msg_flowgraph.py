@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from gnuradio import gr, blocks
+from gnuradio import gr, pdu
 from gnuradio.eng_arg import intx
 from argparse import ArgumentParser
 import sys, time, pmt
@@ -44,29 +44,29 @@ class top(gr.top_block):
 
    def create_fork(self):
 
-      self.src = blocks.pdu_filter(pmt.intern("foo"), pmt.intern("bar"), False)
+      self.src = pdu.pdu_filter(pmt.intern("foo"), pmt.intern("bar"), False)
 
       for _ in range(self.pipes):
-         prev = blocks.pdu_filter(pmt.intern("foo"), pmt.intern("bar"), False)
+         prev = pdu.pdu_filter(pmt.intern("foo"), pmt.intern("bar"), False)
          self.msg_connect((self.src, 'pdus'), (prev, 'pdus'))
 
          for _ in range(1, self.stages):
-               block = blocks.pdu_filter(pmt.intern("foo"), pmt.intern("bar"), False)
+               block = pdu.pdu_filter(pmt.intern("foo"), pmt.intern("bar"), False)
                self.msg_connect((prev, 'pdus'), (block, 'pdus'))
                prev = block
 
 
    def create_diamond(self):
 
-      self.src = blocks.pdu_filter(pmt.intern("foo"), pmt.intern("bar"), False)
-      snk = blocks.pdu_filter(pmt.intern("foo"), pmt.intern("bar"), False)
+      self.src = pdu.pdu_filter(pmt.intern("foo"), pmt.intern("bar"), False)
+      snk = pdu.pdu_filter(pmt.intern("foo"), pmt.intern("bar"), False)
 
       for _ in range(self.pipes):
-         prev = blocks.pdu_filter(pmt.intern("foo"), pmt.intern("bar"), False)
+         prev = pdu.pdu_filter(pmt.intern("foo"), pmt.intern("bar"), False)
          self.msg_connect((self.src, 'pdus'), (prev, 'pdus'))
 
          for _ in range(1, self.stages):
-               block = blocks.pdu_filter(pmt.intern("foo"), pmt.intern("bar"), False)
+               block = pdu.pdu_filter(pmt.intern("foo"), pmt.intern("bar"), False)
                self.msg_connect((prev, 'pdus'), (block, 'pdus'))
                prev = block
 
