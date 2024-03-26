@@ -16,7 +16,7 @@ class top(gr.top_block):
       default_samples = 10e6
       parser = ArgumentParser("Profile GNU Radio Scheduler")
       parser.add_argument("-R", "--run", type=int, default=0, help="the run number (default=%(default)s)")
-      parser.add_argument("-r", "--repetitions", type=int, default=100, help="the number of repetitions (default=%(default)s)")
+      parser.add_argument("-r", "--repetitions", type=int, default=10000, help="the number of repetitions (default=%(default)s)")
       parser.add_argument("-N", "--samples", type=eng_float, default=default_samples, help=("the number of samples to run through the graph (default=%s)" % (eng_notation.num_to_str(default_samples))))
       args = parser.parse_args()
 
@@ -39,12 +39,13 @@ def time_it(tb):
       tb.run()
       stop = time.time_ns()
       np_times[r] = (stop-start)/1e9
-      print("%4d, %20.10f" % (tb.run_num, np_times[r]))
+      print("%4d, %4d, %20.10f" % (tb.run_num, r, np_times[r]))
 
    avg_time = np.mean(np_times)
    var_time = np.var(np_times)
    print("run              %20d"   % (tb.run_num,))
    print("repetitions      %20d"   % (tb.repetitions))
+   print("samples          %20s"   % (eng_notation.num_to_str(tb.samples),))
    print("avg_time         %20.15f" % (avg_time,))
    print("var_time         %20.15f" % (var_time,))
 
