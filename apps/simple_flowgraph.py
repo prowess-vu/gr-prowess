@@ -22,6 +22,7 @@ class top(gr.top_block):
 
       self.run_num = args.run
       self.repetitions = args.repetitions
+      self.samples = args.samples
 
       self.src = blocks.null_source(gr.sizeof_float)
       self.head = blocks.head(gr.sizeof_float, int(self.samples))
