@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 
-from gnuradio import gr, eng_notation
-from gnuradio import blocks, filter
+from gnuradio import gr, eng_notation, blocks, filter
 from gnuradio.eng_arg import eng_float, intx
-
-import sys, time
 from argparse import ArgumentParser
+import sys, time
 
 
 class top(gr.top_block):
@@ -22,7 +20,6 @@ class top(gr.top_block):
       parser.add_argument("-N", "--samples", type=eng_float, default=default_samples, help=("the number of samples to run through the graph (default=%s)" % (eng_notation.num_to_str(default_samples))))
       parser.add_argument("-c", "--config", default="fork", help=("the flow graph layout (default=%(default)s)"))
       parser.add_argument("-m", "--machine-readable", action="store_true", help="machine readable output")
-
       args = parser.parse_args()
 
       self.run_num = args.run
@@ -136,10 +133,6 @@ def time_it(tb):
       print("throughput_avg   %20.10f" % (throughput_avg))
       print("throughput_avg   %20.10f" % (throughput_avg))
       print("run time         %20.10f" % (runtime))
-
-      # breakpoint()
-      # dot = Source(tb.dot_graph())
-      # dot.view()
 
 
 if __name__ == "__main__":
