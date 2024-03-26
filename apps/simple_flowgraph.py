@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-from gnuradio import gr, blocks
+from gnuradio import gr, eng_notation, blocks
+from gnuradio.eng_arg import eng_float
 from argparse import ArgumentParser
 import sys, time, pmt
 import numpy as np
@@ -12,17 +13,21 @@ class top(gr.top_block):
    def __init__(self):
       gr.top_block.__init__(self)
 
+      default_samples = 10e6
       parser = ArgumentParser("Profile GNU Radio Scheduler")
       parser.add_argument("-R", "--run", type=int, default=0, help="the run number (default=%(default)s)")
-      parser.add_argument("-r", "--repetitions", type=int, default=10, help="the number of repetitions (default=%(default)s)")
+      parser.add_argument("-r", "--repetitions", type=int, default=100, help="the number of repetitions (default=%(default)s)")
+      parser.add_argument("-N", "--samples", type=eng_float, default=default_samples, help=("the number of samples to run through the graph (default=%s)" % (eng_notation.num_to_str(default_samples))))
       args = parser.parse_args()
 
       self.run_num = args.run
       self.repetitions = args.repetitions
 
       self.src = blocks.null_source(gr.sizeof_float)
+      self.head = blocks.head(gr.sizeof_float, int(self.samples))
       self.sink = blocks.null_sink(gr.sizeof_float)
-      self.connect(self.src, self.sink)
+      self.connect(self.src, self.head)
+      self.connect(self.head, self.sink)
 
 
 def time_it(tb):
