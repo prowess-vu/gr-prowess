@@ -51,15 +51,15 @@ class top(gr.top_block):
    def create_fork(self):
 
       src = blocks.null_source(gr.sizeof_float)
-      head = blocks.head(gr.sizeof_float, self.samples)
+      head = blocks.head(gr.sizeof_float, int(self.samples))
       self.connect(src, head)
 
-      for pipe in range(self.pipes):
+      for _ in range(self.pipes):
          block = filter.fir_filter_fff(1, self.taps)
          self.connect(head, block)
          self.fir_blocks.append(block)
 
-         for stage in range(1, self.stages):
+         for _ in range(1, self.stages):
                block = filter.fir_filter_fff(1, self.taps)
                self.connect(self.fir_blocks[-1], block)
                self.fir_blocks.append(block)
@@ -73,16 +73,16 @@ class top(gr.top_block):
    def create_diamond(self):
 
       src = blocks.null_source(gr.sizeof_float)
-      head = blocks.head(gr.sizeof_float, self.samples)
+      head = blocks.head(gr.sizeof_float, int(self.samples))
       self.connect(src, head)
       ends = []
 
-      for pipe in range(self.pipes):
+      for _ in range(self.pipes):
          block = filter.fir_filter_fff(1, self.taps)
          self.connect(head, block)
          self.fir_blocks.append(block)
 
-         for stage in range(1, self.stages):
+         for _ in range(1, self.stages):
                block = filter.fir_filter_fff(1, self.taps)
                self.connect(self.fir_blocks[-1], block)
                self.fir_blocks.append(block)
