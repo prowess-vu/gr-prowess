@@ -12,6 +12,3 @@ debug : clean
 
 clean :
 	rm -rf build
-
-run :
-	sudo cset shield --userset=prowess --exec -- python3 apps/run_flowgraph.py --pipes=10 --stages=10 --config=diamond
