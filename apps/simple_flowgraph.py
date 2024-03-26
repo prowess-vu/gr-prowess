@@ -39,7 +39,7 @@ def time_it(tb):
       tb.run()
       stop = time.time_ns()
       np_times[r] = (stop-start)/1e9
-      print("%4d, %10d, %20.10f" % (tb.run_num, r, np_times[r]))
+      print("%4d - %10d: Work Time: %20.10f, Clock Time: %20.10f" % (tb.run_num, r, tb.head.pc_work_time_avg(), np_times[r]))
 
    avg_time = np.mean(np_times)
    var_time = np.var(np_times)
